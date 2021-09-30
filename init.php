@@ -55,3 +55,6 @@ function replaceInFile($path, $replaces)
 
 exec('composer update');
 
+file_exists(__DIR__ . '/test/_laravel/.env') || copy(__DIR__ . '/test/_laravel/.env.example', '/test/_laravel/.env');
+exec('composer update');
+

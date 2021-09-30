@@ -6,7 +6,7 @@ use League\CLImate\CLImate;
 require "vendor/autoload.php";
 
 $filesForReplace = [
-    './composer.json',
+    './composer.json.template',
     './tests/_laravel/composer.json',
     './src/Boilerplate.php',
     './src/BoilerplateFacade.php',
@@ -17,6 +17,7 @@ $filesForRename = [
     './src/Boilerplate.php' => './src/{package|studly}.php',
     './src/BoilerplateFacade.php' => './src/{package|studly}Facade.php',
     './src/BoilerplateServiceProvider.php' => './src/{package|studly}ServiceProvider.php',
+    './composer.json.template' => './composer.json',
 ];
 
 $climate = new CLImate();

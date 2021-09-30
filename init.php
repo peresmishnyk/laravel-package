@@ -53,8 +53,6 @@ function replaceInFile($path, $replaces)
     file_put_contents($path, str_replace(array_keys($replaces), array_values($replaces), file_get_contents($path)));
 }
 
-exec('composer update');
-
-file_exists(__DIR__ . '/tests/_laravel/.env') || copy(__DIR__ . '/tests/_laravel/.env.example', '/test/_laravel/.env');
+file_exists(__DIR__ . '/tests/_laravel/.env') || copy(__DIR__ . '/tests/_laravel/.env.example', '/tests/_laravel/.env');
 exec('composer update');
 

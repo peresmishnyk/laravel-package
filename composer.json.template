@@ -1,0 +1,58 @@
+{
+    "name": "{vendor|kebab}/{package|kebab}",
+    "description": "",
+    "keywords": [],
+    "homepage": "https://github.com/peresmishnyk/boilerplate",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Michkire Dmytro",
+            "email": "michkire@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+        "codeception/codeception": "^4.1",
+        "codeception/module-asserts": "^1.3",
+        "codeception/module-laravel": "^2.1",
+        "codeception/module-phpbrowser": "^1.0.0",
+        "codeception/module-rest": "^1.3",
+        "codeception/module-webdriver": "^1.4",
+        "league/climate": "^3.7",
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "{vendor|studly}\\{package|studly}\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "{vendor|studly}\\{package|studly}\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "post-update-cmd": "cd ./tests/_laravel && composer update"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "{vendor|studly}\\{package|studly}\\{package|studly}ServiceProvider"
+            ],
+            "aliases": {
+                "{package|studly}": "{vendor|studly}\\{package|studly}\\{package|studly}Facade"
+            }
+        }
+    }
+}

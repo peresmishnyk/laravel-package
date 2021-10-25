@@ -3,7 +3,7 @@
 
 
 $loader = require __DIR__ . '/vendor/autoload.php';
-//$loader->addPsr4('Init\\', __DIR__ . DIRECTORY_SEPARATOR . 'init');
+$loader->addPsr4('Init\\', __DIR__ . DIRECTORY_SEPARATOR . 'init');
 
 $init = new \Init\Init();
 

@@ -22,15 +22,7 @@ $filesForRename = [
 
 $climate = new CLImate();
 
-require_once "init" . DIRECTORY_SEPARATOR . 'input_metadata.php';
-
-do {
-    $vendor = mb_strtolower(trim($climate->input('Vendor:')->prompt()) ?: 'peresmishnyk test');
-} while (!trim($vendor));
-
-do {
-    $package = mb_strtolower(trim($climate->input('Package:')->prompt()) ?: 'boilerplate package');
-} while (!trim($package));
+require_once "init" . DIRECTORY_SEPARATOR . 'user_prompt.php';
 
 $replaces = [];
 

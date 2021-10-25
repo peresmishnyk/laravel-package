@@ -19,18 +19,19 @@ trait PromptTrait
      */
     public function user_prompt()
     {
-        $author = $this->prompt('Author', getenv('DEVELOPER_NAME') ?: '');
-        var_dump($author);
+        $author = $this->prompt('Author', getenv('DEVELOPER_NAME'));
+        $email = $this->prompt('Email', getenv('DEVELOPER_EMAIL'));
+        var_dump($email);
         die();
 
-// Get developer email
+        // Get developer email
         $default = getenv('DEVELOPER_EMAIL') ?: '';
         do {
             $prompt = 'Email' . ($default !== '' ? '[' . $default . ']' : '') . ':';
             $email = trim($this->cli->input($prompt)->prompt()) ?: $default;
         } while (!trim($email));
 
-// Try to get developer email from env
+        // Try to get developer email from env
         $env_email = getenv('DEVELOPER_EMAIL');
         do {
             if ($env_email) {
@@ -51,6 +52,7 @@ trait PromptTrait
 
     protected function prompt($message, $default)
     {
+        $default = $default ?: '';
         $input = $this->cli->input($message . ($default !== '' ? '[' . $default . ']' : '') . ':');
         $input->defaultTo($default);
         $input->accept(function ($response) {

@@ -9,10 +9,7 @@ use League\CLImate\CLImate;
  */
 trait PromptTrait
 {
-    /**
-     * @var CLImate
-     */
-    protected $cli;
+    use ClimateTrait;
 
     /**
      *
@@ -28,13 +25,14 @@ trait PromptTrait
 
     protected function prompt($message, $default, $pattern = "|^[a-zA-Z0-9\s\-]+$|")
     {
+        $cli = $this->getClimate();
         $default = $default ?: '';
-        $input = $this->cli->input($message . ($default !== '' ? '[' . $default . ']' : '') . ':');
+        $input = $cli->input($message . ($default !== '' ? '[' . $default . ']' : '') . ':');
         $input->defaultTo($default);
-        $input->accept(function ($response) use ($pattern) {
+        $input->accept(function ($response) use ($pattern, $cli) {
             $is_valid = preg_match($pattern, trim($response));
             if (!$is_valid) {
-                $this->cli->error('Allowed chars: ' . $pattern);
+                $cli->error('Allowed chars: ' . $pattern);
             }
             return $is_valid;
         });

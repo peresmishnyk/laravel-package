@@ -20,7 +20,7 @@ trait PromptTrait
     public function user_prompt()
     {
         $data['author'] = $this->prompt('Author', getenv('DEVELOPER_NAME'));
-        $data['email'] = mb_strtolower($this->prompt('Email', getenv('DEVELOPER_EMAIL'), '|^[a-zA-Z0-9\s\-@]+$|'));
+        $data['email'] = mb_strtolower($this->prompt('Email', getenv('DEVELOPER_EMAIL'), '|^[a-zA-Z0-9\s\-\.@]+$|'));
         $data['vendor'] = mb_strtolower($this->prompt('Vendor', getenv('VENDOR_NAME')));
         $data['package'] = mb_strtolower($this->prompt('Package', (basename(__DIR__ . DIRECTORY_SEPARATOR . '..'))));
         return $data;
@@ -32,7 +32,11 @@ trait PromptTrait
         $input = $this->cli->input($message . ($default !== '' ? '[' . $default . ']' : '') . ':');
         $input->defaultTo($default);
         $input->accept(function ($response) use ($pattern) {
-            return preg_match($pattern, trim($response));
+            $is_valid = preg_match($pattern, trim($response));
+            if (!$is_valid){
+                $this->cli->error('Allowed chars: ' . $pattern);
+            }
+            return $is_valid;
         });
         return $input->prompt();
     }

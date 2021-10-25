@@ -10,7 +10,7 @@ do {
     $prompt = 'Author' . ($default !== '' ? '[' . $default . ']' : '') . ':';
     $input = $climate->input($prompt);
     $input->defaultTo($default);
-    $author = trim($$input->prompt());
+    $author = trim($input->prompt());
     $climate->out($author);
     if ($author === '' && $default !== '') {
         $climate->out($default);

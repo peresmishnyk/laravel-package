@@ -22,6 +22,8 @@ $filesForRename = [
 
 $climate = new CLImate();
 
+require_once "init" . DIRECTORY_SEPARATOR . 'input_metadata.php';
+
 do {
     $vendor = mb_strtolower(trim($climate->input('Vendor:')->prompt()) ?: 'peresmishnyk test');
 } while (!trim($vendor));
@@ -55,6 +57,8 @@ function replaceInFile($path, $replaces)
 }
 
 file_exists(__DIR__ . '/tests/_laravel/.env') || copy(__DIR__ . '/tests/_laravel/.env.example', __DIR__ . '/tests/_laravel/.env');
+
+rmdir(__DIR__ . DIRECTORY_SEPARATOR . 'init');
 unlink(__DIR__ . DIRECTORY_SEPARATOR . __FILE__);
 
 exec('composer update');

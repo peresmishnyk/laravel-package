@@ -19,7 +19,7 @@ trait PromptTrait
      */
     public function user_prompt()
     {
-        $author = $this->prompt('Author' . ($default !== '' ? '[' . $default . ']' : '') . ':', getenv('DEVELOPER_NAME') ?: '');
+        $author = $this->prompt('Author', getenv('DEVELOPER_NAME') ?: '');
         dd($author);
 
 // Get developer email
@@ -50,7 +50,7 @@ trait PromptTrait
 
     protected function prompt($message, $default)
     {
-        $input = $this->cli->input($message);
+        $input = $this->cli->input($message . ($default !== '' ? '[' . $default . ']' : '') . ':');
         $input->defaultTo($default);
         $input->accept(function ($response) {
             return ($response != '');

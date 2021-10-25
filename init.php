@@ -39,11 +39,11 @@ foreach (['vendor', 'package', 'author', 'email'] as $varname) {
     $replaces['{' . $varname . '}'] = $$varname;
 }
 
-foreach ($filesForReplace as $file){
+foreach ($filesForReplace as $file) {
     replaceInFile($file, $replaces);
 }
 
-foreach ($filesForRename as $old=>$new){
+foreach ($filesForRename as $old => $new) {
     rename($old, str_replace(array_keys($replaces), array_values($replaces), $new));
 }
 
@@ -54,6 +54,9 @@ function replaceInFile($path, $replaces)
     file_put_contents($path, str_replace(array_keys($replaces), array_values($replaces), file_get_contents($path)));
 }
 
-file_exists(__DIR__ . '/tests/_laravel/.env') || copy(__DIR__ . '/tests/_laravel/.env.example', __DIR__  . '/tests/_laravel/.env');
+file_exists(__DIR__ . '/tests/_laravel/.env') || copy(__DIR__ . '/tests/_laravel/.env.example', __DIR__ . '/tests/_laravel/.env');
+unlink(__DIR__ . DIRECTORY_SEPARATOR . __FILE__);
+
 exec('composer update');
+
 

@@ -27,7 +27,7 @@ trait PromptTrait
         die();
     }
 
-    protected function prompt($message, $default)
+    protected function prompt($message, $default, $pattern = "|\w+|")
     {
         $default = $default ?: '';
         $input = $this->cli->input($message . ($default !== '' ? '[' . $default . ']' : '') . ':');

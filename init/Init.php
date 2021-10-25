@@ -9,20 +9,21 @@ use League\CLImate\CLImate;
  */
 class Init
 {
+    use PathTrait;
     use PromptTrait;
+    use ReplaceInFilesTrait;
+    use RenameFilesTrait;
 
-    /**
-     * @var CLImate
-     */
-    protected $cli;
 
     /**
      *
      */
     public function __construct()
     {
-        $this->cli = new CLImate;
-        $data = $this->user_prompt();
-        var_dump($data);
+        $this->setProjectRoot(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'));
+        $data = $this->userPrompt();
+        $this->replaceInFiles($data);
+        $this->renameFiles();
+//        $this->cleanup();
     }
 }

@@ -17,7 +17,7 @@ trait PromptTrait
     /**
      *
      */
-    public function user_prompt()
+    protected function userPrompt()
     {
         $data['author'] = $this->prompt('Author', getenv('DEVELOPER_NAME'));
         $data['email'] = mb_strtolower($this->prompt('Email', getenv('DEVELOPER_EMAIL'), '|^[a-zA-Z0-9\s\-\.@]+$|'));

@@ -54,8 +54,8 @@ trait PromptTrait
         $input = $this->cli->input($message . ($default !== '' ? '[' . $default . ']' : '') . ':');
         $input->defaultTo($default);
         $input->accept(function ($response) {
-            return ($response != '');
+            return (trim($response) != '');
         });
-        $response = trim($input->prompt());
+        return $input->prompt();
     }
 }

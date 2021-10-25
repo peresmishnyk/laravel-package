@@ -2,23 +2,25 @@
 
 namespace Init;
 
+use League\CLImate\CLImate;
+
+/**
+ *
+ */
 trait PromptTrait
 {
+    /**
+     * @var CLImate
+     */
     protected $cli;
-    
-    public function user_prompt(){
-        // Get developer name
-        $default = getenv('DEVELOPER_NAME') ?: '';
-        do {
-            $prompt = 'Author' . ($default !== '' ? '[' . $default . ']' : '') . ':';
-            $input = $this->cli->input($prompt);
-            $input->defaultTo($default);
-            $author = trim($input->prompt());
-            $this->cli->out($author);
-            if ($author === '' && $default !== '') {
-                $this->cli->out($default);
-            }
-        } while (!trim($author));
+
+    /**
+     *
+     */
+    public function user_prompt()
+    {
+        $author = $this->prompt('Author' . ($default !== '' ? '[' . $default . ']' : '') . ':', getenv('DEVELOPER_NAME') ?: '');
+        dd($author);
 
 // Get developer email
         $default = getenv('DEVELOPER_EMAIL') ?: '';
@@ -44,5 +46,15 @@ trait PromptTrait
         do {
             $package = mb_strtolower(trim($this->cli->input('Package:')->prompt()) ?: 'boilerplate package');
         } while (!trim($package));
+    }
+
+    protected function prompt($message, $default)
+    {
+        $input = $this->cli->input($message);
+        $input->defaultTo($default);
+        $input->accept(function ($response) {
+            return ($response != '');
+        });
+        $response = trim($input->prompt());
     }
 }

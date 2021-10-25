@@ -20,7 +20,8 @@ trait PromptTrait
     public function user_prompt()
     {
         $author = $this->prompt('Author', getenv('DEVELOPER_NAME') ?: '');
-        dd($author);
+        var_dump($author);
+        die();
 
 // Get developer email
         $default = getenv('DEVELOPER_EMAIL') ?: '';

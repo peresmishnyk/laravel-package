@@ -8,7 +8,9 @@ $climate = $climate ?? new CLImate();
 $default = getenv('DEVELOPER_NAME') ?: '';
 do {
     $prompt = 'Author' . ($default !== '' ? '[' . $default . ']' : '') . ':';
-    $author = trim($climate->input($prompt)->prompt());
+    $input = $climate->input($prompt);
+    $input->defaultTo($default);
+    $author = trim($$input->prompt());
     $climate->out($author);
     if ($author === '' && $default !== '') {
         $climate->out($default);

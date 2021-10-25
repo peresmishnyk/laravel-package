@@ -32,10 +32,11 @@ do {
 
 $replaces = [];
 
-foreach (['vendor', 'package'] as $varname) {
+foreach (['vendor', 'package', 'author', 'email'] as $varname) {
     foreach (['kebab', 'snake', 'studly', 'camel'] as $filter) {
         $replaces['{' . $varname . '|' . $filter . '}'] = \Illuminate\Support\Str::$filter($$varname);
     }
+    $replaces['{' . $varname . '}'] = $$varname;
 }
 
 foreach ($filesForReplace as $file){

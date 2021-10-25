@@ -7,9 +7,8 @@
     "type": "library",
     "authors": [
         {
-            "name": "Michkire Dmytro",
-            "email": "michkire@gmail.com",
-            "role": "Developer"
+            "name": "{author}",
+            "email": "{email}",
         }
     ],
     "require": {

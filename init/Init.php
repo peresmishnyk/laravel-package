@@ -23,5 +23,6 @@ class Init
     {
         $this->cli = new CLImate;
         $data = $this->user_prompt();
+        var_dump($data);
     }
 }

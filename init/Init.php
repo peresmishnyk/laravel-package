@@ -1,6 +1,6 @@
 <?php
 
-namespace init;
+namespace Init;
 
 use League\CLImate\CLImate;
 

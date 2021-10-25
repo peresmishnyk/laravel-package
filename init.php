@@ -7,24 +7,24 @@ $loader->addPsr4('Init\\', __DIR__ . DIRECTORY_SEPARATOR . 'init');
 
 require "init/Init.php";
 
-$init = new Init();
+$init = new \Init\Init();
 
-$filesForReplace = [
-    './composer.json.template',
-    './tests/_laravel/composer.json',
-    './src/Boilerplate.php',
-    './src/BoilerplateFacade.php',
-    './src/BoilerplateServiceProvider.php',
-];
-
-$filesForRename = [
-    './src/Boilerplate.php' => './src/{package|studly}.php',
-    './src/BoilerplateFacade.php' => './src/{package|studly}Facade.php',
-    './src/BoilerplateServiceProvider.php' => './src/{package|studly}ServiceProvider.php',
-    './composer.json.template' => './composer.json',
-];
-
-$climate = new CLImate();
+//$filesForReplace = [
+//    './composer.json.template',
+//    './tests/_laravel/composer.json',
+//    './src/Boilerplate.php',
+//    './src/BoilerplateFacade.php',
+//    './src/BoilerplateServiceProvider.php',
+//];
+//
+//$filesForRename = [
+//    './src/Boilerplate.php' => './src/{package|studly}.php',
+//    './src/BoilerplateFacade.php' => './src/{package|studly}Facade.php',
+//    './src/BoilerplateServiceProvider.php' => './src/{package|studly}ServiceProvider.php',
+//    './composer.json.template' => './composer.json',
+//];
+//
+//$climate = new CLImate();
 
 //require_once "init" . DIRECTORY_SEPARATOR . 'user_prompt.php';
 //

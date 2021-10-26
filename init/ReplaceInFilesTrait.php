@@ -2,8 +2,6 @@
 
 namespace Init;
 
-use \Illuminate\Support\Str;
-
 trait ReplaceInFilesTrait
 {
     use PathTrait;

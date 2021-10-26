@@ -13,8 +13,15 @@ trait RenameFilesTrait
         './composer.json.template' => './composer.json',
     ];
 
-    protected function renameFiles($replaces)
+    protected function renameFiles($data)
     {
+        foreach ($data as $key => $val) {
+            foreach (['kebab', 'snake', 'studly', 'camel'] as $filter) {
+                $replaces['{' . $key . '|' . $filter . '}'] = \Illuminate\Support\Str::$filter($val);
+            }
+            $replaces['{' . $key . '}'] = $val;
+        }
+
         foreach ($this->filesForRename as $old => $new) {
             $old = preg_replace('/^\./', $this->getProjectRoot(), str_replace('/', DIRECTORY_SEPARATOR, $old));
             $new = preg_replace('/^\./', $this->getProjectRoot(), str_replace('/', DIRECTORY_SEPARATOR, $new));

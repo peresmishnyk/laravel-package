@@ -20,8 +20,8 @@ trait CleanupTrait
 
     protected function removeDir($dirname) {
         if (is_dir($dirname)) {
-            $dir = new RecursiveDirectoryIterator($dirname, RecursiveDirectoryIterator::SKIP_DOTS);
-            foreach (new RecursiveIteratorIterator($dir, RecursiveIteratorIterator::CHILD_FIRST) as $object) {
+            $dir = new \RecursiveDirectoryIterator($dirname, \RecursiveDirectoryIterator::SKIP_DOTS);
+            foreach (new \RecursiveIteratorIterator($dir, \RecursiveIteratorIterator::CHILD_FIRST) as $object) {
                 if ($object->isFile()) {
                     unlink($object);
                 } elseif($object->isDir()) {

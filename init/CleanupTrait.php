@@ -12,9 +12,27 @@ trait CleanupTrait
         $cli->info('Cleanup');
 
         $root_dir = $this->getProjectRoot();
-        rmdir($root_dir . DIRECTORY_SEPARATOR . 'init');
+        $this->removeDir($root_dir . DIRECTORY_SEPARATOR . 'init');
         unlink($root_dir . DIRECTORY_SEPARATOR . 'init.php');
 
         exec('composer update');
+    }
+
+    protected function removeDir($dirname) {
+        if (is_dir($dirname)) {
+            $dir = new RecursiveDirectoryIterator($dirname, RecursiveDirectoryIterator::SKIP_DOTS);
+            foreach (new RecursiveIteratorIterator($dir, RecursiveIteratorIterator::CHILD_FIRST) as $object) {
+                if ($object->isFile()) {
+                    unlink($object);
+                } elseif($object->isDir()) {
+                    rmdir($object);
+                } else {
+                    throw new Exception('Unknown object type: '. $object->getFileName());
+                }
+            }
+            rmdir($dirname); // Now remove
+        } else {
+            throw new Exception('This is not a directory');
+        }
     }
 }

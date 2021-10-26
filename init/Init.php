@@ -13,6 +13,8 @@ class Init
     use PromptTrait;
     use ReplaceInFilesTrait;
     use RenameFilesTrait;
+    use LaravelPrepareTrait;
+    use CleanupTrait;
 
 
     /**
@@ -24,6 +26,7 @@ class Init
         $data = $this->userPrompt();
         $this->replaceInFiles($data);
         $this->renameFiles($data);
-//        $this->cleanup();
+        $this->laravelPrepare();
+        $this->cleanup();
     }
 }

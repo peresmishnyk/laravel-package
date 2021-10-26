@@ -25,7 +25,7 @@ trait RenameFilesTrait
             $replaces['{' . $key . '}'] = $val;
         }
 
-        $progress = $cli->progress()->total(count($this->fileForReplace));
+        $progress = $cli->progress()->total(count($this->filesForRename));
 
         foreach ($this->filesForRename as $old => $new) {
             $old = preg_replace('/^\./', $this->getProjectRoot(), str_replace('/', DIRECTORY_SEPARATOR, $old));

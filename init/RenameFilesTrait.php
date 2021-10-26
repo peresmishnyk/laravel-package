@@ -16,8 +16,8 @@ trait RenameFilesTrait
     protected function renameFiles($replaces)
     {
         foreach ($this->filesForRename as $old => $new) {
-            $old = preg_replace('/^\.\//', $this->getProjectRoot(), str_replace('/', DIRECTORY_SEPARATOR, $old));
-            $new = preg_replace('/^\.\//', $this->getProjectRoot(), str_replace('/', DIRECTORY_SEPARATOR, $new));
+            $old = preg_replace('/^\./', $this->getProjectRoot(), str_replace('/', DIRECTORY_SEPARATOR, $old));
+            $new = preg_replace('/^\./', $this->getProjectRoot(), str_replace('/', DIRECTORY_SEPARATOR, $new));
             rename($old, str_replace(array_keys($replaces), array_values($replaces), $new));
         }
     }

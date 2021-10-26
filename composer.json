@@ -14,7 +14,6 @@
   ],
   "require": {
     "php": "^7.4|^8.0",
-    "illuminate/support": "^8.67",
     "league/climate": "^3.7"
   },
   "scripts": {

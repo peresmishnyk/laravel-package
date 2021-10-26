@@ -31,7 +31,7 @@ trait ReplaceInFilesTrait
     protected function replaceInFile($path, $replaces)
     {
         // Normalize path
-        $path = preg_replace('/^\.\//', $this->getProjectRoot(), str_replace('/', DIRECTORY_SEPARATOR, $path));
+        $path = preg_replace('/^\./', $this->getProjectRoot(), str_replace('/', DIRECTORY_SEPARATOR, $path));
         file_put_contents($path, str_replace(array_keys($replaces), array_values($replaces), file_get_contents($path)));
     }
 

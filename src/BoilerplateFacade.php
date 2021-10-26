@@ -16,6 +16,6 @@ class {package|studly}Facade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'boilerplate';
+        return '{package|snake}';
     }
 }

@@ -12,8 +12,7 @@ trait CleanupTrait
         $cli->info('Cleanup');
 
         $root_dir = $this->getProjectRoot();
-        $this->removeDir($root_dir . DIRECTORY_SEPARATOR . 'init');
-        unlink($root_dir . DIRECTORY_SEPARATOR . 'init.php');
+        $this->removeDir(__DIR__);
 
         exec('composer update');
     }

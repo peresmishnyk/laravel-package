@@ -23,7 +23,7 @@ trait ReplaceInFilesTrait
             $replaces['{' . $key . '}'] = $val;
         }
 
-        foreach ($this->filesForReplace as $file) {
+        foreach ($this->fileForReplace as $file) {
             replaceInFile($file, $replaces);
         }
     }

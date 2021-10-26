@@ -15,6 +15,9 @@ trait RenameFilesTrait
 
     protected function renameFiles($data)
     {
+        $cli = $this->getClimate();
+        $cli->info('Rename files');
+
         foreach ($data as $key => $val) {
             foreach (['kebab', 'snake', 'studly', 'camel'] as $filter) {
                 $replaces['{' . $key . '|' . $filter . '}'] = \Illuminate\Support\Str::$filter($val);
@@ -22,10 +25,13 @@ trait RenameFilesTrait
             $replaces['{' . $key . '}'] = $val;
         }
 
+        $progress = $cli->progress()->total(count($this->fileForReplace));
+
         foreach ($this->filesForRename as $old => $new) {
             $old = preg_replace('/^\./', $this->getProjectRoot(), str_replace('/', DIRECTORY_SEPARATOR, $old));
             $new = preg_replace('/^\./', $this->getProjectRoot(), str_replace('/', DIRECTORY_SEPARATOR, $new));
             rename($old, str_replace(array_keys($replaces), array_values($replaces), $new));
+            $progress->advance();
         }
     }
 

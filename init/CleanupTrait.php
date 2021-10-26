@@ -8,6 +8,9 @@ trait CleanupTrait
 
     public function cleanup()
     {
+        $cli = $this->getClimate();
+        $cli->info('Cleanup');
+
         $root_dir = $this->getProjectRoot();
         rmdir($root_dir . DIRECTORY_SEPARATOR . 'init');
         unlink($root_dir . DIRECTORY_SEPARATOR . 'init.php');

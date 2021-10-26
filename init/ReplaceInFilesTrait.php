@@ -32,7 +32,6 @@ trait ReplaceInFilesTrait
         foreach ($this->fileForReplace as $file) {
             $this->replaceInFile($file, $replaces);
             $progress->advance();
-            usleep(1000000);
         }
     }
 

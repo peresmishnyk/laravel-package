@@ -24,7 +24,7 @@ trait ReplaceInFilesTrait
         }
 
         foreach ($this->fileForReplace as $file) {
-            replaceInFile($file, $replaces);
+            $this->replaceInFile($file, $replaces);
         }
     }
 

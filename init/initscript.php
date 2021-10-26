@@ -3,7 +3,7 @@
 
 
 $loader = require __DIR__ . '/../vendor/autoload.php';
-$loader->addPsr4('Init\\', __DIR__ . '/../init');
+$loader->addPsr4('Init\\', realpath(__DIR__ . '/../init'));
 
 require "init/Init.php";
 

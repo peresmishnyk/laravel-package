@@ -23,7 +23,7 @@ class Init
         $this->setProjectRoot(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'));
         $data = $this->userPrompt();
         $this->replaceInFiles($data);
-        $this->renameFiles();
+        $this->renameFiles($data);
 //        $this->cleanup();
     }
 }

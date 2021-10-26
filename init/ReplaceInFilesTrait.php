@@ -5,6 +5,7 @@ namespace Init;
 trait ReplaceInFilesTrait
 {
     use PathTrait;
+    use ClimateTrait;
 
     protected $fileForReplace = [
         './composer.json.template',
@@ -16,6 +17,9 @@ trait ReplaceInFilesTrait
 
     protected function replaceInFiles($data)
     {
+        $cli = $this->getClimate();
+        $cli->info('Replace placeholders');
+
         foreach ($data as $key => $val) {
             foreach (['kebab', 'snake', 'studly', 'camel'] as $filter) {
                 $replaces['{' . $key . '|' . $filter . '}'] = \Illuminate\Support\Str::$filter($val);
@@ -23,8 +27,12 @@ trait ReplaceInFilesTrait
             $replaces['{' . $key . '}'] = $val;
         }
 
+        $progress = $cli->progress()->total(count($this->fileForReplace));
+
         foreach ($this->fileForReplace as $file) {
             $this->replaceInFile($file, $replaces);
+            $progress->advance();
+            usleep(1000000);
         }
     }
 

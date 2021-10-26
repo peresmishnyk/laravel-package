@@ -16,6 +16,9 @@ trait PromptTrait
      */
     protected function userPrompt()
     {
+        $cli = $this->getClimate();
+        $cli->info('Get data');
+
         $data['author'] = $this->prompt('Author', getenv('DEVELOPER_NAME'));
         $data['email'] = mb_strtolower($this->prompt('Email', getenv('DEVELOPER_EMAIL'), '|^[a-zA-Z0-9\s\-\.@]+$|'));
         $data['vendor'] = mb_strtolower($this->prompt('Vendor', getenv('VENDOR_NAME')));

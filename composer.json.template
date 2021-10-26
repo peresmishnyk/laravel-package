@@ -8,7 +8,7 @@
     "authors": [
         {
             "name": "{author}",
-            "email": "{email}",
+            "email": "{email}"
         }
     ],
     "require": {
